@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jardim Pamplona Shopping</title>
+<link rel="icon" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #ffffff; color: #4a3f45; font-family: Poppins, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #e0602c; }
+</style>
+</helmet>
+
+<div style="width:100%;max-width:100%;overflow-x:hidden;background:#ffffff">
+  <dc-import name="SiteHeader" active="Planeje sua visita" hint-size="100%,140px"></dc-import>
+
+  <section style="background:#f4ece7;padding:clamp(36px,4.5vw,60px) 24px">
+    <div style="max-width:1280px;margin:0 auto;text-align:center">
+      <span style="font-size:11px;letter-spacing:0.24em;color:#6b4f60;font-weight:600">PLANEJE SUA VISITA</span>
+      <h1 style="font-weight:600;font-size:clamp(28px,3.8vw,46px);margin:12px 0 0;color:#563349">Tudo antes de vir ao shopping</h1>
+      <div style="width:58px;height:2px;background:#563349;margin:16px auto 0"></div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(40px,5vw,66px) 24px 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr));gap:18px">
+      <div style="border:1px solid #f0e6e0;border-radius:6px;padding:26px">
+        <div style="font-weight:600;font-size:21px;margin-bottom:14px;color:#563349">Horários</div>
+        <sc-for list="{{ hours }}" as="h" hint-placeholder-count="6">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid #f6ece6;font-size:13px">
+            <span style="font-size:10px;letter-spacing:0.12em;color:#6b4f60;font-weight:600">{{ h.label }}</span>
+            <span style="text-align:right;color:#5c4a54">{{ h.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border:1px solid #f0e6e0;border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-weight:600;font-size:21px;color:#563349">Como chegar e estacionar</div>
+        <div style="font-size:13.5px;color:#7a6a73;line-height:1.65">R. Pamplona, 1704 - Jardim Paulista, São Paulo - SP, 01405-002. Estacionamento coberto, valet no Rooftop e embarque de aplicativos no térreo.</div>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Jardim+Pamplona+Shopping%2C+R.+Pamplona%2C+1704+-+Jardim+Paulista%2C+S%C3%A3o+Paulo+-+SP%2C+01405-002" target="_blank" rel="noopener" style="position:relative;display:block;flex:1;min-height:200px;border-radius:4px;overflow:hidden;background:#e8e0d8">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6654%2C-23.5729%2C-46.6574%2C-23.5679&amp;layer=mapnik&amp;marker=-23.5703849%2C-46.6614179" title="Mapa do Jardim Pamplona Shopping" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;filter:saturate(0.75) contrast(1.02)" loading="lazy"></iframe>
+          <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);width:22px;height:22px;border-radius:999px 999px 999px 2px;background:#e0602c;border:3px solid #ffffff;box-shadow:0 3px 8px rgba(0,0,0,0.35);rotate:-45deg"></span>
+          <span style="position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,0.92);color:#4a3f45;font-size:11px;font-weight:600;padding:6px 10px;border-radius:3px;white-space:nowrap">Ver no mapa →</span>
+          <span style="position:absolute;right:6px;top:6px;font-size:8.5px;color:#5c5550;background:rgba(255,255,255,0.8);padding:2px 5px;border-radius:2px;white-space:nowrap">© OpenStreetMap</span>
+        </a>
+      </div>
+      <div style="border:1px solid #f0e6e0;border-radius:6px;padding:26px">
+        <div style="font-weight:600;font-size:21px;margin-bottom:14px;color:#563349">Serviços</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ services }}" as="sv" hint-placeholder-count="10">
+            <span style="padding:9px 14px;background:#f9e4d7;border-radius:999px;font-size:12.5px;color:#5c4a54">{{ sv }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(40px,5vw,66px) 24px clamp(44px,5.5vw,76px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px">
+      <sc-for list="{{ access }}" as="a" hint-placeholder-count="4">
+        <div style="background:#f4ece7;border-radius:6px;padding:22px">
+          <div style="font-size:10.5px;letter-spacing:0.16em;color:#1d4d43;font-weight:600">{{ a.label }}</div>
+          <div style="font-weight:600;font-size:17px;color:#563349;margin-top:9px">{{ a.value }}</div>
+          <div style="font-size:13px;color:#7a6a73;margin-top:7px;line-height:1.6">{{ a.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hours: [
+        { label: "LOJAS", value: "Seg a Sáb 10h–22h · Dom e feriados 14h–20h" },
+        { label: "ROOFTOP", value: "Seg a Sáb 11h–23h · Dom e feriados 12h–22h" },
+        { label: "PRAÇA DE ALIMENTAÇÃO", value: "Seg a Sáb 11h–22h · Dom e feriados 12h–20h" },
+        { label: "HIPERMERCADO CARREFOUR", value: "24h" },
+        { label: "FARMÁCIA CARREFOUR", value: "Seg a Sáb 07h–22h · Dom e feriados 08h–22h" },
+        { label: "COMPETITION", value: "Seg a Sex 5h30–22h · Sáb 8h–15h · Dom 9h–15h" }
+      ],
+      services: ["Estacionamento coberto", "Valet Rooftop", "Wi-Fi gratuito", "Fraldário", "Acessibilidade", "Caixas eletrônicos", "Achados e perdidos", "Pet friendly", "Carrinhos de bebê", "Táxi e aplicativos"],
+      access: [
+        { label: "ESTACIONAMENTO", value: "Acesso pela Rua Pamplona", text: "Coberto, com vagas preferenciais e para gestantes." },
+        { label: "VALET", value: "Rooftop, Piso 4", text: "Serviço disponível no horário de funcionamento dos restaurantes." },
+        { label: "APLICATIVOS E TÁXI", value: "Embarque no térreo", text: "Ponto sinalizado próximo à entrada principal." },
+        { label: "ACESSIBILIDADE", value: "Elevadores e rampas", text: "Cadeiras de rodas disponíveis na administração." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jardim Pamplona Shopping</title>
+<link rel="icon" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #ffffff; color: #4a3f45; font-family: Poppins, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #e0602c; }
+  input, select { font-family: inherit; }
+  ::placeholder { color: #a2909a; }
+</style>
+</helmet>
+
+<div style="width:100%;max-width:100%;overflow-x:hidden;background:#ffffff">
+  <dc-import name="SiteHeader" active="Lojas" hint-size="100%,140px"></dc-import>
+
+  <section style="position:relative;background:#563349">
+    <div style="position:relative;width:100%;aspect-ratio:1528/440">
+      <img src="assets/fazer-lojas.png" alt="Lojas do Jardim Pamplona Shopping" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(45,24,37,0.88),rgba(45,24,37,0.3))"></div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(24px,5vw,72px);color:#ffffff">
+        <span style="font-size:11px;letter-spacing:0.24em;color:#e8b830;font-weight:600">LOJAS E SERVIÇOS</span>
+        <h1 style="font-weight:700;font-size:clamp(30px,4.4vw,56px);line-height:1.08;margin:0;max-width:620px">Nossas lojas</h1>
+        <p style="font-size:clamp(14px,1.4vw,18px);line-height:1.6;color:#e6d6e0;max-width:520px;margin:0">Busque por nome, categoria ou piso e veja a localização de cada operação.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(40px,5vw,66px) 24px clamp(44px,5.5vw,76px)">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;background:#f9e4d7;border-radius:6px;padding:16px;align-items:center">
+      <input value="{{ query }}" onInput="{{ onQuery }}" placeholder="Digite o nome da loja ou uma palavra-chave" style="flex:1 1 240px;min-width:0;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none" />
+      <select value="{{ category }}" onChange="{{ onCategory }}" style="flex:0 1 200px;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none">
+        <sc-for list="{{ categories }}" as="c" hint-placeholder-count="5">
+          <option value="{{ c }}">{{ c }}</option>
+        </sc-for>
+      </select>
+      <select value="{{ floor }}" onChange="{{ onFloor }}" style="flex:0 1 165px;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none">
+        <sc-for list="{{ floors }}" as="fl" hint-placeholder-count="5">
+          <option value="{{ fl }}">{{ fl }}</option>
+        </sc-for>
+      </select>
+      <button onClick="{{ clearFilters }}" style="padding:13px 20px;border-radius:4px;border:0;background:#563349;color:#ffffff;font-size:14px;font-weight:500;cursor:pointer">Limpar filtros</button>
+      <span style="font-size:11px;letter-spacing:0.12em;color:#6b4f60;padding-left:4px;font-weight:600">{{ resultCount }}</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:18px;margin-top:22px;max-width:1000px;margin-left:auto;margin-right:auto">
+      <sc-for list="{{ visibleStores }}" as="st" hint-placeholder-count="8">
+        <div style="border:1px solid #f0e6e0;border-radius:6px;overflow:hidden;background:#ffffff" style-hover="box-shadow:0 12px 26px rgba(86,51,73,0.1)">
+          <div style="height:140px;background:#ffffff;border-bottom:1px solid #f4ece8;display:grid;place-items:center;padding:16px">
+            <sc-if value="{{ st.logo }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ st.logo }}" alt="{{ st.name }}" style="max-width:100%;max-height:108px;width:auto;height:auto;object-fit:contain" />
+            </sc-if>
+          </div>
+          <div style="padding:18px">
+            <div style="font-weight:600;font-size:17px;color:#563349">{{ st.name }}</div>
+            <div style="font-size:12.5px;color:#7a6a73;margin-top:6px">{{ st.meta }}</div>
+            <div style="font-size:12.5px;color:#7a6a73;margin-top:2px">{{ st.phone }}</div>
+            <div style="font-size:11px;letter-spacing:0.12em;color:#1d4d43;font-weight:600;margin-top:12px">{{ st.cat }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:60px 20px;color:#7a6a73;font-size:15px">Nenhuma loja encontrada com esses filtros.</div>
+    </sc-if>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { query: "", category: "Todas as categorias", floor: "Todos os pisos" };
+
+  stores() {
+    return [
+      { name: "Souq Culinária Libanesa", cat: "Alimentação", floor: "Rooftop", meta: "Rooftop · Piso 4", phone: "(11) 3882-0130", logo: "assets/loja-souq.png" },
+      { name: "The Steak Factory", cat: "Alimentação", floor: "Rooftop", meta: "Rooftop · Piso 4", phone: "(11) 3882-0130", logo: "assets/loja-steak-factory.jpg" },
+      { name: "Oakberry Açaí Bowls", cat: "Alimentação", floor: "Piso 1", meta: "Piso 1 · Praça de Alimentação", phone: "(11) 3882-0130", logo: "assets/loja-oakberry.png" },
+      { name: "Burger King", cat: "Alimentação", floor: "Piso 1", meta: "Piso 1 · Praça de Alimentação", phone: "(11) 3882-0130", logo: "assets/loja-burger-king.jpg" },
+      { name: "Cacau Show", cat: "Alimentação", floor: "Térreo", meta: "Térreo · Chocolates", phone: "(11) 3882-0130", logo: "assets/loja-cacau-show.png" },
+      { name: "MP Brinquedos", cat: "Presentes", floor: "Piso 2", meta: "Piso 2 · Brinquedos", phone: "(11) 3882-0130", logo: "assets/loja-mp-brinquedos.png" },
+      { name: "CVC Viagens", cat: "Serviços", floor: "Piso 2", meta: "Piso 2 · Agência de viagens", phone: "(11) 3882-0130", logo: "assets/loja-cvc.jpg" },
+      { name: "Buddha Spa", cat: "Beleza", floor: "Piso 3", meta: "Piso 3 · Massagens e spa", phone: "(11) 3882-0130", logo: "assets/loja-buddha-spa.jpg" }
+    ];
+  }
+
+  renderVals() {
+    const q = this.state.query.trim().toLowerCase();
+    const cat = this.state.category, fl = this.state.floor;
+    const visible = this.stores().filter(s =>
+      (cat === "Todas as categorias" || s.cat === cat) &&
+      (fl === "Todos os pisos" || s.floor === fl) &&
+      (!q || s.name.toLowerCase().includes(q) || s.cat.toLowerCase().includes(q))
+    );
+    return {
+      categories: ["Todas as categorias", "Alimentação", "Beleza", "Presentes", "Serviços", "Moda", "Entretenimento"],
+      floors: ["Todos os pisos", "Térreo", "Piso 1", "Piso 2", "Piso 3", "Rooftop"],
+      query: this.state.query,
+      category: this.state.category,
+      floor: this.state.floor,
+      onQuery: e => this.setState({ query: e.target.value }),
+      onCategory: e => this.setState({ category: e.target.value }),
+      onFloor: e => this.setState({ floor: e.target.value }),
+      clearFilters: () => this.setState({ query: "", category: "Todas as categorias", floor: "Todos os pisos" }),
+      visibleStores: visible,
+      empty: visible.length === 0,
+      resultCount: visible.length + (visible.length === 1 ? " loja" : " lojas")
+    };
+  }
+}
+</script>
+</body>
+</html>

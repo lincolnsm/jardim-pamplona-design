@@ -1,12 +1,18 @@
-# Jardim Pamplona Shopping — redesign da home
+# Jardim Pamplona Shopping — redesign
 
-Site estático. Para publicar no GitHub Pages:
+Site estático com home e páginas internas.
 
-1. Crie um repositório no GitHub e envie o conteúdo desta pasta (`index.html`, `support.js`, `assets/`) na raiz do repositório.
-2. No repositório: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, branch `main`, pasta `/ (root)`. Salve.
-3. Em 1–2 minutos o link fica disponível em `https://<usuario>.github.io/<repositorio>/`.
+Arquivos:
+- index.html (home)
+- rooftop.html, gastronomia.html, lojas.html, eventos.html, planeje-sua-visita.html
+- SiteHeader.dc.html, SiteFooter.dc.html (header e footer compartilhados — precisam estar na mesma pasta)
+- support.js e assets/ (imagens)
+
+Publicar no GitHub Pages:
+1. Crie um repositório e envie TODO o conteúdo desta pasta para a raiz do repositório.
+2. Settings → Pages → Source: Deploy from a branch → branch main → pasta / (root) → Save.
+3. Em 1-2 minutos o link aparece em Settings → Pages: https://<usuario>.github.io/<repositorio>/
 
 Observações:
-- Requer conexão com a internet (React e as fontes são carregados por CDN).
-- Todas as imagens estão em `assets/` com caminhos relativos.
-- Os links do menu e do rodapé estão sem destino; apenas redes sociais e o endereço no Google Maps apontam para fora.
+- Requer internet (React e fontes vêm de CDN).
+- Links de menu/rodapé sem página própria estão neutros; redes sociais e Google Maps apontam para fora.
