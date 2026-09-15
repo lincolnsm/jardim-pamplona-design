@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jardim Pamplona Shopping</title>
+<link rel="icon" href="assets/logo.png">
+<script src="./support.js"></script>
+  <title>Jardim Pamplona Shopping</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #ffffff; color: #4a3f45; font-family: Poppins, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #e0602c; }
+  input, select, button { font-family: inherit; }
+  ::placeholder { color: #a2909a; }
+  .om-rail { scrollbar-width: none; -ms-overflow-style: none; }
+  .om-rail::-webkit-scrollbar { display: none; }
+</style>
+</helmet>
+
+<div style="width:100%;max-width:100%;overflow-x:hidden;background:#ffffff">
+
+  <header style="position:sticky;top:0;z-index:40;background:#ffffff">
+    <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:24px;padding:16px 28px">
+      <a href="#" style="display:flex;align-items:center">
+        <img src="assets/logo.png" alt="Jardim Pamplona Shopping" style="display:block;height:52px;width:auto" />
+      </a>
+      <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:26px;margin-left:auto;font-size:15px;color:#3d3238">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
+          <a href="{{ n.href }}" style-hover="color:#e0602c">{{ n.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:18px;padding-left:22px;border-left:1px solid #e6e0e3">
+        <a href="https://www.instagram.com/jardimpamplonashopping/" aria-label="Instagram" style="display:flex;color:#3d3238" style-hover="color:#e0602c">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <button aria-label="Buscar" style="border:0;background:transparent;color:#3d3238;cursor:pointer;padding:0;display:flex">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div style="background:#e9e6e4">
+      <div style="max-width:1440px;margin:0 auto;padding:9px 28px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:flex-end;font-size:13.5px;color:#4a4446">
+        <a href="#planeje" style="display:flex;align-items:center;gap:8px" style-hover="color:#e0602c">Shopping aberto até as 22:00 <span style="font-size:11px">⌄</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section style="position:relative;background:#1d4d43">
+    <a href="{{ bannerHref }}" style="display:block;position:relative;width:100%;aspect-ratio:1528/577">
+      <img src="assets/banner-blues-beer.png" alt="Blues Beer #NoPam" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ op0 }};transition:opacity .5s" />
+      <img src="assets/banner-velas-vinhos.png" alt="Velas Aromáticas e Vinhos" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ op1 }};transition:opacity .5s" />
+      <img src="assets/banner-70-lojas.png" alt="Das 70 lojas ao Rooftop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ op2 }};transition:opacity .5s" />
+      <img src="assets/banner-cinepolis.png" alt="Cinépolis VIP - Piso 3" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ op3 }};transition:opacity .5s" />
+    </a>
+    <button onClick="{{ prevBanner }}" aria-label="Anterior" style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:44px;height:74px;border:0;background:rgba(255,255,255,0.78);color:#3d3238;font-size:22px;cursor:pointer" style-hover="background:#ffffff">‹</button>
+    <button onClick="{{ nextBanner }}" aria-label="Próximo" style="position:absolute;top:50%;right:0;transform:translateY(-50%);width:44px;height:74px;border:0;background:rgba(255,255,255,0.78);color:#3d3238;font-size:22px;cursor:pointer" style-hover="background:#ffffff">›</button>
+    <div style="position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:9px">
+      <sc-for list="{{ bannerDots }}" as="dot" hint-placeholder-count="4">
+        <button onClick="{{ dot.go }}" aria-label="banner" style="width:11px;height:11px;border-radius:999px;border:2px solid #ffffff;padding:0;cursor:pointer;background:{{ dot.bg }}"></button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="fazer" style="padding:clamp(54px,6.5vw,88px) 24px 0;background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">O que fazer</h2>
+        <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px">
+        <sc-for list="{{ doCards }}" as="card" hint-placeholder-count="5">
+          <a href="{{ card.href }}" style="position:relative;display:block;border-radius:6px;overflow:hidden;min-height:310px;background:repeating-linear-gradient(135deg,#efd8ca 0 12px,#e8d0c1 12px 24px)" style-hover="box-shadow:0 14px 30px rgba(86,51,73,0.2)">
+            <sc-if value="{{ card.img }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ card.img }}" alt="{{ card.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            </sc-if>
+            <span style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(40,20,32,0.9),rgba(40,20,32,0));color:#ffffff;display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span style="font-weight:500;font-size:20px">{{ card.title }}</span>
+              <span style="width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,0.7);display:grid;place-items:center;font-size:14px;flex:0 0 auto">›</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="rooftop" style="margin-top:clamp(54px,6.5vw,88px);background:#1d4d43;color:#f4efe5;padding:clamp(54px,6.5vw,88px) 24px">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(28px,4vw,56px);align-items:center">
+      <div>
+        <span style="font-size:11px;letter-spacing:0.22em;color:#e8b830;font-weight:600">NOSSO PRINCIPAL DIFERENCIAL</span>
+        <h2 style="font-weight:600;font-size:clamp(30px,4vw,50px);line-height:1.1;margin:16px 0 18px;color:#ffffff">Rooftop: os Jardins a céu aberto</h2>
+        <div style="width:58px;height:2px;background:#e8b830;margin-bottom:22px"></div>
+        <p style="font-size:clamp(15px,1.4vw,17px);line-height:1.7;color:#cbdcd4;max-width:520px">Restaurantes, bares e música ao vivo no Piso 4. Segunda a sábado, das 11h às 23h; domingos e feriados, das 12h às 22h. Valet exclusivo e acesso direto por elevador.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px">
+          <a href="#rooftop" style="padding:15px 30px;border-radius:4px;background:#e8b830;color:#3b2015;font-weight:600;font-size:14.5px" style-hover="background:#f5c841;color:#3b2015">Conheça o Rooftop</a>
+          <a href="#gastronomia" style="padding:15px 30px;border-radius:4px;border:1px solid rgba(244,239,229,0.55);color:#f4efe5;font-size:14.5px;font-weight:500" style-hover="background:rgba(244,239,229,0.14);color:#ffffff">Onde comer</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:32px;margin-top:42px;padding-top:26px;border-top:1px solid #2e6055">
+          <sc-for list="{{ rooftopStats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-weight:600;font-size:28px;color:#ffffff">{{ s.n }}</div>
+              <div style="font-size:13px;color:#a9c2b9;margin-top:4px">{{ s.l }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="grid-column:span 2;border-radius:6px;overflow:hidden;height:270px;background:#205045">
+          <img src="assets/rooftop-las-lenas.jpg" alt="Las Leñas Parrilla Uruguaya no Rooftop" style="display:block;width:100%;height:100%;object-fit:cover" />
+        </div>
+        <div style="border-radius:6px;overflow:hidden;height:165px;background:#205045">
+          <img src="assets/rooftop-souq.jpg" alt="Souq Culinária Libanesa no Rooftop" style="display:block;width:100%;height:100%;object-fit:cover" />
+        </div>
+        <div style="border-radius:6px;overflow:hidden;height:165px;background:#205045">
+          <img src="assets/rooftop-salao.jpg" alt="Salão de restaurante no Rooftop" style="display:block;width:100%;height:100%;object-fit:cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gastronomia" style="padding:clamp(54px,6.5vw,88px) 0 0;background:#ffffff">
+    <div style="text-align:center;margin-bottom:38px;padding:0 24px">
+      <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a2 2 0 002 2h0a2 2 0 002-2V3"></path><path d="M8 12v9"></path><path d="M16 3c2 1.5 3 3.5 3 6s-1 3-3 3v9"></path></svg></div>
+      <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Gastronomia</h2>
+      <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+    </div>
+    <div style="position:relative">
+      <div ref="{{ foodRail }}" class="om-rail" style="display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding:4px max(24px,calc((100% - 1280px) / 2 + 24px)) 8px">
+        <sc-for list="{{ foodCards }}" as="f" hint-placeholder-count="5">
+          <div style="flex:0 0 clamp(230px,24vw,300px);border:1px solid #f0e6e0;border-radius:6px;overflow:hidden;background:#ffffff" style-hover="box-shadow:0 12px 26px rgba(86,51,73,0.12)">
+            <div style="height:205px;overflow:hidden;background:#f1dbcd">
+              <sc-if value="{{ f.img }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ f.img }}" alt="{{ f.title }}" style="display:block;width:100%;height:100%;object-fit:cover" />
+              </sc-if>
+            </div>
+            <div style="padding:20px">
+              <div style="font-size:10px;letter-spacing:0.16em;color:#1d4d43;font-weight:600">{{ f.tag }}</div>
+              <div style="font-weight:600;font-size:19px;margin:9px 0 7px;color:#563349">{{ f.title }}</div>
+              <div style="font-size:13.5px;color:#7a6a73;line-height:1.6">{{ f.text }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ foodPrev }}" aria-label="Anterior" style="position:absolute;top:50%;left:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eadfd8;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.12)">‹</button>
+      <button onClick="{{ foodNext }}" aria-label="Próximo" style="position:absolute;top:50%;right:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eadfd8;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.12)">›</button>
+    </div>
+    <div style="text-align:center;margin-top:34px">
+      <a href="#gastronomia" style="display:inline-block;padding:14px 34px;border-radius:4px;background:#563349;color:#ffffff;font-weight:500;font-size:14.5px" style-hover="background:#432539;color:#ffffff">Onde comer</a>
+    </div>
+  </section>
+
+  <section id="eventos" style="margin-top:clamp(54px,6.5vw,88px);background:#f9e4d7;padding:clamp(54px,6.5vw,88px) 0">
+    <div style="text-align:center;margin-bottom:38px;padding:0 24px">
+      <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></div>
+      <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Eventos</h2>
+      <div style="width:58px;height:2px;background:#563349;margin:16px auto 0"></div>
+    </div>
+    <div style="position:relative">
+      <div ref="{{ eventRail }}" class="om-rail" style="display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding:4px max(24px,calc((100% - 1280px) / 2 + 24px)) 8px">
+        <sc-for list="{{ events }}" as="e" hint-placeholder-count="4">
+          <a href="#eventos" style="flex:0 0 clamp(250px,27vw,340px);display:block;background:#ffffff;border-radius:6px;overflow:hidden" style-hover="box-shadow:0 14px 30px rgba(86,51,73,0.18)">
+            <div style="height:210px;overflow:hidden;background:#efd8ca">
+              <sc-if value="{{ e.img }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ e.img }}" alt="{{ e.title }}" style="display:block;width:100%;height:100%;object-fit:cover" />
+              </sc-if>
+            </div>
+            <div style="display:flex;gap:16px;padding:20px;align-items:flex-start">
+              <div style="text-align:center;background:#563349;color:#ffffff;border-radius:4px;padding:10px 12px;min-width:62px">
+                <div style="font-weight:700;font-size:23px;line-height:1">{{ e.day }}</div>
+                <div style="font-size:9.5px;letter-spacing:0.14em;margin-top:4px;color:#e6cfdc;font-weight:600">{{ e.month }}</div>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:17px;line-height:1.35;color:#563349">{{ e.title }}</div>
+                <div style="font-size:13px;color:#7a6a73;margin-top:6px;line-height:1.55">{{ e.text }}</div>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <button onClick="{{ eventPrev }}" aria-label="Anterior" style="position:absolute;top:50%;left:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eed9cc;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.14)">‹</button>
+      <button onClick="{{ eventNext }}" aria-label="Próximo" style="position:absolute;top:50%;right:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eed9cc;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.14)">›</button>
+    </div>
+    <div style="text-align:center;margin-top:34px">
+      <a href="https://jardimpamplonashopping.com.br/eventos" style="display:inline-block;padding:14px 34px;border-radius:4px;background:#563349;color:#ffffff;font-weight:500;font-size:14.5px" style-hover="background:#432539;color:#ffffff">Confira a programação</a>
+    </div>
+  </section>
+
+  <section id="cinema" style="padding:clamp(54px,6.5vw,88px) 0 0;background:#ffffff">
+    <div style="text-align:center;margin-bottom:38px;padding:0 24px">
+      <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 4v16M16 4v16M3 9h5M3 15h5M16 9h5M16 15h5"></path></svg></div>
+      <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Cinema</h2>
+      <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+    </div>
+    <div style="position:relative">
+      <div ref="{{ movieRail }}" class="om-rail" style="display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding:4px max(24px,calc((100% - 1280px) / 2 + 24px)) 8px">
+        <sc-for list="{{ movies }}" as="m" hint-placeholder-count="6">
+          <div style="flex:0 0 clamp(230px,23vw,320px);text-align:center">
+            <div style="aspect-ratio:2/3;border-radius:6px;overflow:hidden;background:#f1dbcd">
+              <sc-if value="{{ m.poster }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ m.poster }}" alt="{{ m.title }}" style="display:block;width:100%;height:100%;object-fit:cover" />
+              </sc-if>
+            </div>
+            <div style="font-weight:600;font-size:19px;margin:16px 0 7px;color:#563349;line-height:1.35">{{ m.title }}</div>
+            <div style="font-size:13.5px;color:#7a6a73">Próxima sessão: <span style="color:#1d4d43">{{ m.time }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ moviePrev }}" aria-label="Anterior" style="position:absolute;top:42%;left:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eadfd8;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.12)">‹</button>
+      <button onClick="{{ movieNext }}" aria-label="Próximo" style="position:absolute;top:42%;right:max(12px,calc((100% - 1280px) / 2 - 8px));transform:translateY(-50%);width:40px;height:40px;border-radius:999px;border:1px solid #eadfd8;background:#ffffff;color:#563349;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(86,51,73,0.12)">›</button>
+    </div>
+    <div style="text-align:center;margin-top:34px">
+      <a href="https://jardimpamplonashopping.com.br/cinema" style="display:inline-block;padding:14px 34px;border-radius:4px;background:#563349;color:#ffffff;font-weight:500;font-size:14.5px" style-hover="background:#432539;color:#ffffff">Ver todos os filmes</a>
+    </div>
+  </section>
+
+  <section id="ofertas" style="margin-top:clamp(54px,6.5vw,88px);background:#563349;color:#f6ecf1;padding:clamp(54px,6.5vw,88px) 24px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:38px">
+        <div style="display:flex;justify-content:center;color:#ffffff"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5l-8 8a2 2 0 01-2.8 0l-6.2-6.2a2 2 0 01-.6-1.4V5a2 2 0 012-2h7.9a2 2 0 011.4.6l6.3 6.3a2 2 0 010 2.6z"></path><circle cx="8.5" cy="8.5" r="1.3"></circle></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#ffffff">Ofertas das lojas</h2>
+        <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px">
+        <sc-for list="{{ offers }}" as="o" hint-placeholder-count="4">
+          <div style="background:#5f3c52;border:1px solid #6e4a5f;border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:13px;min-height:210px">
+            <div style="width:62px;height:62px;border-radius:6px;background:#ffffff;display:grid;place-items:center;padding:7px">
+              <sc-if value="{{ o.logo }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ o.logo }}" alt="{{ o.store }}" style="max-width:100%;max-height:48px;width:auto;height:auto;object-fit:contain" />
+              </sc-if>
+            </div>
+            <div style="font-size:11px;letter-spacing:0.12em;color:#e6cfdc;font-weight:600">{{ o.store }}</div>
+            <div style="font-weight:600;font-size:18px;line-height:1.3;color:#ffffff">{{ o.title }}</div>
+            <div style="font-size:13px;color:#dcc9d5;line-height:1.6">{{ o.text }}</div>
+            <div style="margin-top:auto;font-size:10.5px;letter-spacing:0.14em;color:#e8b830;font-weight:600">{{ o.valid }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="text-align:center;margin-top:36px">
+        <a href="#ofertas" style="display:inline-block;padding:14px 34px;border-radius:4px;background:#e8b830;color:#3b2015;font-weight:600;font-size:14.5px" style-hover="background:#f5c841;color:#3b2015">Veja as ofertas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="lojas" style="padding:clamp(54px,6.5vw,88px) 24px 0;background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:34px">
+        <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.3 12H5.3z"></path><path d="M9 8V6a3 3 0 016 0v2"></path></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Nossas lojas</h2>
+        <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;background:#f9e4d7;border-radius:6px;padding:16px;align-items:center">
+        <input value="{{ query }}" onInput="{{ onQuery }}" placeholder="Digite o nome da loja ou uma palavra-chave" style="flex:1 1 240px;min-width:0;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none" />
+        <select value="{{ category }}" onChange="{{ onCategory }}" style="flex:0 1 200px;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none">
+          <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
+            <option value="{{ c }}">{{ c }}</option>
+          </sc-for>
+        </select>
+        <select value="{{ floor }}" onChange="{{ onFloor }}" style="flex:0 1 165px;padding:13px 16px;border:1px solid #eed9cc;border-radius:4px;font-size:14px;background:#ffffff;color:#4a3f45;outline:none">
+          <sc-for list="{{ floors }}" as="fl" hint-placeholder-count="4">
+            <option value="{{ fl }}">{{ fl }}</option>
+          </sc-for>
+        </select>
+        <button onClick="{{ clearFilters }}" style="padding:13px 20px;border-radius:4px;border:0;background:#563349;color:#ffffff;font-size:14px;font-weight:500;cursor:pointer">Limpar filtros</button>
+        <span style="font-size:11px;letter-spacing:0.12em;color:#6b4f60;padding-left:4px;font-weight:600">{{ resultCount }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;margin-top:20px">
+        <sc-for list="{{ visibleStores }}" as="st" hint-placeholder-count="8">
+          <div style="border:1px solid #f0e6e0;border-radius:6px;overflow:hidden;background:#ffffff" style-hover="box-shadow:0 12px 26px rgba(86,51,73,0.1)">
+            <div style="height:140px;background:#ffffff;border-bottom:1px solid #f4ece8;display:grid;place-items:center;padding:16px">
+              <sc-if value="{{ st.logo }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ st.logo }}" alt="{{ st.name }}" style="max-width:100%;max-height:108px;object-fit:contain" />
+              </sc-if>
+            </div>
+            <div style="padding:18px">
+              <div style="font-weight:600;font-size:16.5px;color:#563349">{{ st.name }}</div>
+              <div style="font-size:12.5px;color:#7a6a73;margin-top:6px">{{ st.meta }}</div>
+              <div style="font-size:12.5px;color:#7a6a73;margin-top:2px">{{ st.phone }}</div>
+              <div style="font-size:13px;margin-top:13px;color:#e0602c;font-weight:500">Saiba mais →</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="text-align:center;margin-top:34px">
+        <a href="#lojas" style="display:inline-block;padding:14px 34px;border-radius:4px;border:1px solid #563349;color:#563349;font-weight:500;font-size:14.5px" style-hover="background:#563349;color:#ffffff">Ver todas as lojas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="conteudo" style="margin-top:clamp(54px,6.5vw,88px);background:#f9e4d7;padding:clamp(54px,6.5vw,88px) 24px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:38px">
+        <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 19h5"></path><path d="M10 22h4"></path><path d="M12 2a6.5 6.5 0 00-4 11.6V16h8v-2.4A6.5 6.5 0 0012 2z"></path></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Dicas e novidades</h2>
+        <div style="width:58px;height:2px;background:#563349;margin:16px auto 0"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:18px">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+          <a href="#conteudo" style="display:block;background:#ffffff;border-radius:6px;overflow:hidden" style-hover="box-shadow:0 14px 30px rgba(86,51,73,0.18)">
+            <div style="height:210px;overflow:hidden;background:#efd8ca">
+              <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ p.img }}" alt="{{ p.title }}" style="display:block;width:100%;height:100%;object-fit:cover" />
+              </sc-if>
+            </div>
+            <div style="padding:22px">
+              <div style="font-size:10px;letter-spacing:0.16em;color:#e0602c;font-weight:600">{{ p.tag }}</div>
+              <div style="font-weight:600;font-size:19px;line-height:1.35;margin-top:10px;color:#563349">{{ p.title }}</div>
+              <div style="font-size:13.5px;color:#7a6a73;margin-top:8px;line-height:1.6">{{ p.text }}</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="social" style="padding:clamp(54px,6.5vw,88px) 24px 0;background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:34px">
+        <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17" cy="7" r="1"></circle></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Nossas redes</h2>
+        <div style="width:58px;height:2px;background:#e8b830;margin:16px auto 0"></div>
+        <div style="font-size:13px;color:#6b4f60;margin-top:14px;letter-spacing:0.1em;font-weight:600">@JARDIMPAMPLONASHOPPING</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px;align-items:start">
+        <a href="https://www.instagram.com/jardimpamplonashopping/" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-1.png" alt="Post do Instagram" style="display:block;width:100%;height:auto" /></a>
+        <a href="https://www.tiktok.com/@jardimpamplonashopping" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-2.png" alt="Vídeo do TikTok" style="display:block;width:100%;height:auto" /></a>
+        <a href="https://www.instagram.com/jardimpamplonashopping/" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-3.png" alt="Post do Instagram" style="display:block;width:100%;height:auto" /></a>
+        <a href="https://www.tiktok.com/@jardimpamplonashopping" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-4.png" alt="Vídeo do TikTok" style="display:block;width:100%;height:auto" /></a>
+        <a href="https://www.instagram.com/jardimpamplonashopping/" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-5.png" alt="Post do Instagram" style="display:block;width:100%;height:auto" /></a>
+        <a href="https://www.tiktok.com/@jardimpamplonashopping" style="border-radius:6px;overflow:hidden;background:#f1dbcd" style-hover="opacity:0.92"><img src="assets/social-7.png" alt="Vídeo do TikTok" style="display:block;width:100%;height:auto" /></a>
+      </div>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:32px;font-size:14.5px;font-weight:500">
+        <a href="https://www.instagram.com/jardimpamplonashopping/" style="padding:13px 28px;border-radius:4px;background:#563349;color:#ffffff" style-hover="background:#432539;color:#ffffff">Instagram</a>
+        <a href="https://www.tiktok.com/@jardimpamplonashopping" style="padding:13px 28px;border-radius:4px;border:1px solid #e3d3da;color:#563349" style-hover="background:#f9e4d7;color:#563349">TikTok</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="planeje" style="margin-top:clamp(54px,6.5vw,88px);background:#f4ece7;padding:clamp(54px,6.5vw,88px) 24px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:38px">
+        <div style="display:flex;justify-content:center;color:#563349"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></div>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:10px 0 0;color:#563349">Planeje sua visita</h2>
+        <div style="width:58px;height:2px;background:#563349;margin:16px auto 0"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px">
+        <div style="background:#ffffff;border-radius:6px;padding:26px">
+          <div style="font-weight:600;font-size:20px;margin-bottom:14px;color:#563349">Horários</div>
+          <sc-for list="{{ hours }}" as="h" hint-placeholder-count="6">
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid #f6ece6;font-size:13px">
+              <span style="font-size:10px;letter-spacing:0.1em;color:#6b4f60;font-weight:600">{{ h.label }}</span>
+              <span style="text-align:right;color:#5c4a54">{{ h.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#ffffff;border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:14px">
+          <div style="font-weight:600;font-size:20px;color:#563349">Como chegar e estacionar</div>
+          <div style="font-size:13.5px;color:#7a6a73;line-height:1.65">R. Pamplona, 1704 - Jardim Paulista, São Paulo - SP, 01405-002. Estacionamento coberto, valet no Rooftop e embarque de aplicativos no térreo.</div>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jardim+Pamplona+Shopping%2C+R.+Pamplona%2C+1704+-+Jardim+Paulista%2C+S%C3%A3o+Paulo+-+SP%2C+01405-002" style="position:relative;display:block;flex:1;min-height:190px;border-radius:4px;overflow:hidden;background:#e8e0d8">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6654%2C-23.5729%2C-46.6574%2C-23.5679&amp;layer=mapnik&amp;marker=-23.5703849%2C-46.6614179" title="Mapa do Jardim Pamplona Shopping" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;filter:saturate(0.75) contrast(1.02)" loading="lazy"></iframe>
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);width:22px;height:22px;border-radius:999px 999px 999px 2px;background:#e0602c;border:3px solid #ffffff;box-shadow:0 3px 8px rgba(0,0,0,0.35);rotate:-45deg"></span>
+            <span style="position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,0.92);color:#4a3f45;font-size:11px;font-weight:600;padding:6px 10px;border-radius:3px;white-space:nowrap">Ver no mapa →</span>
+            <span style="position:absolute;right:6px;top:6px;font-size:8.5px;color:#5c5550;background:rgba(255,255,255,0.8);padding:2px 5px;border-radius:2px;white-space:nowrap">© OpenStreetMap</span>
+          </a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jardim+Pamplona+Shopping%2C+R.+Pamplona%2C+1704+-+Jardim+Paulista%2C+S%C3%A3o+Paulo+-+SP%2C+01405-002" style="font-size:13.5px;color:#e0602c;font-weight:500">Abrir no Google Maps →</a>
+        </div>
+        <div style="background:#ffffff;border-radius:6px;padding:26px">
+          <div style="font-weight:600;font-size:20px;margin-bottom:14px;color:#563349">Serviços</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ services }}" as="sv" hint-placeholder-count="10">
+              <span style="padding:9px 14px;background:#f9e4d7;border-radius:999px;font-size:12.5px;color:#5c4a54">{{ sv }}</span>
+            </sc-for>
+          </div>
+          <a href="#planeje" style="display:inline-block;margin-top:20px;font-size:13.5px;color:#e0602c;font-weight:500">Ver todos os serviços →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(44px,5.5vw,72px) 24px;background:#ffffff">
+    <div style="max-width:840px;margin:0 auto;text-align:center">
+      <h2 style="font-weight:500;font-size:clamp(19px,2.1vw,26px);margin:0;color:#563349;line-height:1.5;text-wrap:pretty">Cadastre seu e-mail e fique por dentro de todas as novidades do Jardim Pamplona Shopping</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px">
+        <input placeholder="E-mail" style="flex:1 1 290px;max-width:410px;padding:15px 18px;border:1px solid #eed9cc;border-radius:4px;background:#ffffff;font-size:15px;outline:none;color:#4a3f45" />
+        <button style="padding:15px 30px;border-radius:4px;border:0;background:#e0602c;color:#ffffff;font-size:14.5px;font-weight:600;cursor:pointer">Assine nossa News</button>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#563349;color:#dcc9d3;padding:clamp(46px,5.5vw,72px) 24px 26px">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(28px,4vw,50px)">
+      <div>
+        <img src="assets/logo.png" alt="Jardim Pamplona Shopping" style="display:block;height:50px;width:auto;filter:brightness(0) invert(1)" />
+        <div style="font-weight:600;font-size:12.5px;color:#ffffff;margin-top:26px;letter-spacing:0.06em">ENDEREÇO</div>
+        <div style="font-size:13.5px;line-height:1.75;margin-top:10px">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jardim+Pamplona+Shopping%2C+R.+Pamplona%2C+1704+-+Jardim+Paulista%2C+S%C3%A3o+Paulo+-+SP%2C+01405-002">R. Pamplona, 1704 - Jardim Paulista, São Paulo - SP, 01405-002</a><br />
+          <a href="#">(11) 3882-0130</a>
+        </div>
+        <div style="display:flex;gap:16px;margin-top:20px;font-size:13.5px">
+          <a href="https://www.instagram.com/jardimpamplonashopping/">Instagram</a>
+          <a href="https://www.tiktok.com/@jardimpamplonashopping">TikTok</a>
+          <a href="https://web.facebook.com/jardimpamplona/">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:12.5px;color:#ffffff;margin-bottom:16px;letter-spacing:0.06em">HORÁRIOS DE FUNCIONAMENTO</div>
+        <div style="font-size:13.5px;line-height:1.9">
+          <strong style="color:#f3e6ed">LOJAS</strong><br />Segunda a Sábado - 10h às 22h<br />Domingo e Feriados - 14h às 20h<br /><br />
+          <strong style="color:#f3e6ed">ROOFTOP</strong><br />Segunda a Sábado - 12h às 23h<br />Domingos e feriados - 12h às 22h<br /><br />
+          <strong style="color:#f3e6ed">PRAÇA DE ALIMENTAÇÃO</strong><br />Segunda a Sábado - 11h às 22h<br />Domingos e feriados - 12h às 20h
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:12.5px;color:#ffffff;margin-bottom:16px;letter-spacing:0.06em">OPERAÇÕES</div>
+        <div style="font-size:13.5px;line-height:1.9">
+          <strong style="color:#f3e6ed">HIPERMERCADO CARREFOUR</strong><br />24h<br /><br />
+          <strong style="color:#f3e6ed">FARMÁCIA CARREFOUR</strong><br />Segunda a Sábado - 07h às 22h<br />Domingos e feriados - 08h às 22h<br /><br />
+          <strong style="color:#f3e6ed">COMPETITION</strong><br />Segunda a Sexta - 5h30 às 22h<br />Sábado - 8h às 15h<br />Domingo - 9h às 15h
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:12.5px;color:#ffffff;margin-bottom:16px;letter-spacing:0.06em">LINKS</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:13.5px">
+          <a href="#">Contato</a>
+          <a href="#">Trabalhe Conosco</a>
+          <a href="#">Seja um Lojista</a>
+          <a href="#">Área do Lojista</a>
+          <a href="#">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:42px auto 0;padding-top:22px;border-top:1px solid #6b4759;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:12.5px;color:#cbb3c0">
+      <span style="display:flex;align-items:center;gap:14px">Administrado e Comercializado por <img src="assets/carrefour-property.png" alt="Carrefour Property" style="display:block;height:30px;width:auto" /></span>
+      <span>© 2026 Jardim Pamplona Shopping</span>
+    </div>
+    <div style="margin:26px -24px -26px;background:#3f2436;padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:9px">
+      <span style="font-size:12px;color:#cbb3c0">Powered by:</span>
+      <img src="assets/esperienza.svg" alt="esperienza!" style="display:block;height:15px;width:auto" />
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { banner: 0, query: "", category: "Todas as categorias", floor: "Todos os pisos" };
+  foodRail = React.createRef();
+  eventRail = React.createRef();
+  movieRail = React.createRef();
+  postRail = React.createRef();
+
+  attachDrag(ref) {
+    const el = ref.current;
+    if (!el || el.dataset.dragBound) return;
+    el.dataset.dragBound = "1";
+    let down = false, startX = 0, startLeft = 0, moved = false;
+    el.addEventListener("pointerdown", e => {
+      down = true; moved = false; startX = e.clientX; startLeft = el.scrollLeft;
+      el.style.scrollBehavior = "auto"; el.style.cursor = "grabbing";
+    });
+    el.addEventListener("pointermove", e => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      el.scrollLeft = startLeft - dx;
+    });
+    const end = () => { down = false; el.style.cursor = "grab"; el.style.scrollBehavior = "smooth"; };
+    el.addEventListener("pointerup", end);
+    el.addEventListener("pointerleave", end);
+    el.addEventListener("click", e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    el.style.cursor = "grab";
+  }
+
+  componentDidUpdate() { this.bindRails(); }
+
+  dup(list) { return list.concat(list, list); }
+
+  attachLoop(ref) {
+    const el = ref.current;
+    if (!el || el.dataset.loopBound) return;
+    el.dataset.loopBound = "1";
+    const norm = () => {
+      const band = el.scrollWidth / 3;
+      if (band < 10) return;
+      const prev = el.style.scrollBehavior;
+      if (el.scrollLeft < band * 0.5) {
+        el.style.scrollBehavior = "auto";
+        el.scrollLeft += band;
+        el.style.scrollBehavior = prev;
+      } else if (el.scrollLeft > band * 1.5) {
+        el.style.scrollBehavior = "auto";
+        el.scrollLeft -= band;
+        el.style.scrollBehavior = prev;
+      }
+    };
+    el.addEventListener("scroll", () => {
+      clearTimeout(el._loopT);
+      el._loopT = setTimeout(norm, 120);
+    });
+    requestAnimationFrame(() => { el.scrollLeft = el.scrollWidth / 3; });
+  }
+
+  bindRails() {
+    [this.foodRail, this.eventRail, this.movieRail].forEach(r => { this.attachDrag(r); this.attachLoop(r); });
+  }
+
+  componentDidMount() {
+    this.bindRails();
+    this.timer = setInterval(() => this.setState(s => ({ banner: (s.banner + 1) % this.banners().length })), 6500);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  banners() {
+    return [
+      { label: "Blues Beer #NoPam — Rooftop, Piso 4", href: "#eventos", src: "assets/banner-blues-beer.png" },
+      { label: "Velas Aromáticas & Vinhos — Lounge, Piso 2", href: "#eventos", src: "assets/banner-velas-vinhos.png" },
+      { label: "Das 70 lojas ao Rooftop", href: "#lojas", src: "assets/banner-70-lojas.png" },
+      { label: "Cinépolis VIP — Piso 3", href: "#cinema", src: "assets/banner-cinepolis.png" }
+    ];
+  }
+
+  scrollRail(ref, dir) {
+    const el = ref.current;
+    if (!el) return;
+    const card = el.firstElementChild;
+    const step = card ? card.getBoundingClientRect().width + 16 : Math.max(280, el.clientWidth * 0.8);
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  stores() {
+    return [
+      { name: "Souq Culinária Libanesa", cat: "Alimentação", floor: "Rooftop", meta: "Rooftop · Piso 4", phone: "(11) 3882-0130", logo: "assets/loja-souq.png" },
+      { name: "The Steak Factory", cat: "Alimentação", floor: "Rooftop", meta: "Rooftop · Piso 4", phone: "(11) 3882-0130", logo: "assets/loja-steak-factory.jpg" },
+      { name: "Oakberry Açaí Bowls", cat: "Alimentação", floor: "Piso 1", meta: "Piso 1 · Praça de Alimentação", phone: "(11) 3882-0130", logo: "assets/loja-oakberry.png" },
+      { name: "Burger King", cat: "Alimentação", floor: "Piso 1", meta: "Piso 1 · Praça de Alimentação", phone: "(11) 3882-0130", logo: "assets/loja-burger-king.jpg" },
+      { name: "Cacau Show", cat: "Alimentação", floor: "Térreo", meta: "Térreo · Chocolates", phone: "(11) 3882-0130", logo: "assets/loja-cacau-show.png" },
+      { name: "MP Brinquedos", cat: "Presentes", floor: "Piso 2", meta: "Piso 2 · Brinquedos", phone: "(11) 3882-0130", logo: "assets/loja-mp-brinquedos.png" },
+      { name: "CVC Viagens", cat: "Serviços", floor: "Piso 2", meta: "Piso 2 · Agência de viagens", phone: "(11) 3882-0130", logo: "assets/loja-cvc.jpg" },
+      { name: "Buddha Spa", cat: "Beleza", floor: "Piso 3", meta: "Piso 3 · Massagens e spa", phone: "(11) 3882-0130", logo: "assets/loja-buddha-spa.jpg" }
+    ];
+  }
+
+  renderVals() {
+    const b = this.banners()[this.state.banner];
+    const q = this.state.query.trim().toLowerCase();
+    const cat = this.state.category, fl = this.state.floor;
+    const visible = this.stores().filter(s =>
+      (cat === "Todas as categorias" || s.cat === cat) &&
+      (fl === "Todos os pisos" || s.floor === fl) &&
+      (!q || s.name.toLowerCase().includes(q) || s.cat.toLowerCase().includes(q))
+    );
+    return {
+      bannerLabel: b.label,
+      bannerHref: b.href,
+      op0: this.state.banner === 0 ? 1 : 0,
+      op1: this.state.banner === 1 ? 1 : 0,
+      op2: this.state.banner === 2 ? 1 : 0,
+      op3: this.state.banner === 3 ? 1 : 0,
+      navItems: [
+        { label: "Lojas", href: "#lojas" },
+        { label: "Gastronomia", href: "#gastronomia" },
+        { label: "Rooftop", href: "#rooftop" },
+        { label: "Cinema", href: "#cinema" },
+        { label: "Eventos", href: "#eventos" },
+        { label: "Planeje sua visita", href: "#planeje" },
+        { label: "Contato", href: "#" },
+        { label: "Seja um lojista", href: "https://jardimpamplonashopping.com.br/seja-lojista" }
+      ],
+      prevBanner: () => this.setState(s => ({ banner: (s.banner - 1 + this.banners().length) % this.banners().length })),
+      nextBanner: () => this.setState(s => ({ banner: (s.banner + 1) % this.banners().length })),
+      bannerDots: this.banners().map((_, i) => ({
+        bg: i === this.state.banner ? "#e8b830" : "rgba(255,255,255,0.25)",
+        go: () => this.setState({ banner: i })
+      })),
+      foodRail: this.foodRail, eventRail: this.eventRail, movieRail: this.movieRail,
+      foodPrev: () => this.scrollRail(this.foodRail, -1),
+      foodNext: () => this.scrollRail(this.foodRail, 1),
+      eventPrev: () => this.scrollRail(this.eventRail, -1),
+      eventNext: () => this.scrollRail(this.eventRail, 1),
+      moviePrev: () => this.scrollRail(this.movieRail, -1),
+      movieNext: () => this.scrollRail(this.movieRail, 1),
+      doCards: [
+        { title: "Lojas e Serviços", href: "#lojas", img: "assets/fazer-lojas.png" },
+        { title: "Gastronomia", href: "#gastronomia", img: "assets/fazer-gastronomia.png" },
+        { title: "Rooftop", href: "#rooftop", img: "assets/fazer-rooftop.png" },
+        { title: "Cinema", href: "#cinema", img: "assets/fazer-cinema.png" },
+        { title: "Eventos", href: "#eventos", img: "assets/fazer-eventos.png" }
+      ],
+      rooftopStats: [
+        { n: "11h–23h", l: "Segunda a sábado" },
+        { n: "Piso 4", l: "Restaurantes e bares" },
+        { n: "Valet", l: "Acesso exclusivo" }
+      ],
+      foodCards: this.dup([
+        { tag: "ROOFTOP", title: "Jantar com vista", text: "Cozinha autoral, coquetelaria e música ao vivo no Piso 4.", img: "assets/gastro-rooftop.png" },
+        { tag: "PRAÇA DE ALIMENTAÇÃO", title: "Almoço rápido", text: "Opções para todos os gostos, das 11h às 22h.", img: "assets/gastro-praca.png" },
+        { tag: "CAFETERIA", title: "Café da tarde", text: "Confeitaria, cafés especiais e doces nos Jardins.", img: "assets/gastro-cafe.png" },
+        { tag: "SABORES DO NOSSO SHOPPING", title: "Pratos do dia", text: "Do saudável ao clássico, nos restaurantes do shopping.", img: "assets/gastro-prato.png" }
+      ]),
+      events: this.dup([
+        { day: "26", month: "SET", title: "Blues Beer #NoPam", text: "Sábado e domingo, a partir das 12h, no Rooftop - Piso 4.", img: "assets/evento-blues-beer.png" },
+        { day: "21", month: "SET", title: "Oficina Infantil de Primavera", text: "Domingo, das 14h às 18h, no Piso 1.", img: "assets/evento-oficina-primavera.png" },
+        { day: "27", month: "SET", title: "Feira de Adoção de Pets", text: "Sábado, das 11h às 17h, na entrada da Rua Pamplona.", img: "assets/evento-adocao-pets.png" },
+        { day: "04", month: "OUT", title: "Música ao vivo no Rooftop", text: "Sexta-feira, a partir das 19h. Entrada gratuita.", img: "assets/evento-musica-rooftop.png" }
+      ]),
+      movies: this.dup([
+        { title: "Código: Vingança", time: "14:30", poster: "assets/filme-codigo-vinganca.webp" },
+        { title: "A Maravilhosa Árvore Encantada", time: "16:20", poster: "assets/filme-arvore-encantada.webp" },
+        { title: "Minha Melhor Amiga", time: "18:50", poster: "assets/filme-minha-melhor-amiga.webp" },
+        { title: "Da Magia à Sedução", time: "21:10", poster: "assets/filme-da-magia-a-seducao.webp" },
+        { title: "A Ilha Esquecida", time: "22:40", poster: "assets/filme-a-ilha-esquecida.webp" }
+      ]),
+      offers: [
+        { store: "BURGER KING", logo: "assets/loja-burger-king.jpg", title: "Combo em dobro", text: "Oferta válida na loja participante. Apresente o cupom no caixa.", valid: "ATÉ 30/09" },
+        { store: "OAKBERRY", logo: "assets/loja-oakberry.png", title: "Leve 2, pague 1", text: "Promoção em bowls selecionados na Praça de Alimentação.", valid: "ATÉ 28/09" },
+        { store: "CACAU SHOW", logo: "assets/loja-cacau-show.png", title: "Chocolates com 20% off", text: "Desconto em linhas selecionadas na loja do Térreo.", valid: "TODA SEMANA" },
+        { store: "THE STEAK FACTORY", logo: "assets/loja-steak-factory.jpg", title: "Happy hour Rooftop", text: "Drinks e entradas com condição especial das 17h às 19h.", valid: "SEG A SEX" }
+      ],
+      posts: [
+        { tag: "DICAS", title: "Um roteiro de três horas no shopping", text: "Do café da manhã ao cinema, uma sugestão de visita completa.", img: "assets/post-roteiro.png" },
+        { tag: "NOVIDADES", title: "As novas operações do Rooftop", text: "Conheça quem acabou de chegar ao Piso 4.", img: "assets/post-rooftop.png" },
+        { tag: "GASTRONOMIA", title: "Onde tomar o melhor café dos Jardins", text: "Cinco opções para a pausa da tarde.", img: "assets/post-cafe.png" }
+      ],
+      socialSlots: ["POST INSTAGRAM", "REELS", "POST INSTAGRAM", "TIKTOK", "POST INSTAGRAM", "REELS"],
+      hours: [
+        { label: "LOJAS", value: "Seg a Sáb 10h–22h · Dom e feriados 14h–20h" },
+        { label: "ROOFTOP", value: "Seg a Sáb 11h–23h · Dom e feriados 12h–22h" },
+        { label: "PRAÇA DE ALIMENTAÇÃO", value: "Seg a Sáb 11h–22h · Dom e feriados 12h–20h" },
+        { label: "HIPERMERCADO CARREFOUR", value: "24h" },
+        { label: "FARMÁCIA CARREFOUR", value: "Seg a Sáb 07h–22h · Dom e feriados 08h–22h" },
+        { label: "COMPETITION", value: "Seg a Sex 5h30–22h · Sáb 8h–15h · Dom 9h–15h" }
+      ],
+      services: ["Estacionamento coberto", "Valet Rooftop", "Wi-Fi gratuito", "Fraldário", "Acessibilidade", "Caixas eletrônicos", "Achados e perdidos", "Pet friendly", "Carrinhos de bebê", "Táxi e aplicativos"],
+      categories: ["Todas as categorias", "Alimentação", "Beleza", "Presentes", "Serviços", "Moda", "Entretenimento"],
+      floors: ["Todos os pisos", "Térreo", "Piso 1", "Piso 2", "Piso 3", "Rooftop"],
+      query: this.state.query,
+      category: this.state.category,
+      floor: this.state.floor,
+      onQuery: e => this.setState({ query: e.target.value }),
+      onCategory: e => this.setState({ category: e.target.value }),
+      onFloor: e => this.setState({ floor: e.target.value }),
+      clearFilters: () => this.setState({ query: "", category: "Todas as categorias", floor: "Todos os pisos" }),
+      visibleStores: visible.slice(0, 4),
+      resultCount: visible.length + (visible.length === 1 ? " loja" : " lojas")
+    };
+  }
+}
+</script>
+</body>
+</html>
